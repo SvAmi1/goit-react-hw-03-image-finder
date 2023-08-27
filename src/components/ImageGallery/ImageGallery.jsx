@@ -6,7 +6,7 @@ export const ImageGallery = ({ images, onDelete }) => {
     <ul>
       {images.map(image => (
         <li
-          key={images.id}
+          key={image.id}
         >
         <ImageGallerytItem info={image} onDelete={onDelete}/>
         </li>
