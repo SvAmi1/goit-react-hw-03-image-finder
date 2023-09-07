@@ -24,17 +24,20 @@ export class App extends Component {
     evt.target.reset();
   };
 
-  setImages = () => {};
 
-  componentDidUpdate(prevProps, prevState) {
+async  componentDidUpdate(prevProps, prevState) {
 const query = this.state.query;
 const page = this.state.page;
 
-if (prevState.query !== this.state.query) {fetchImages(query, page)}
+if (prevState.query !== this.state.query) {
+  const newImages = await fetchImages(query, page);
+  this.setState(prevState => ({...prevState.query, 
+    images: newImages});)
+}
   }
 
 render () {
-
+const {images, } = this.state;
   return (
     <div>
       <SearchBar onSubmit={this.handleSubmit}/>
