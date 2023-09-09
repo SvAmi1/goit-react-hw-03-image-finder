@@ -14,13 +14,18 @@ export class App extends Component {
 
   changeQuery = newQuery => {
     this.setState({
-      query: newQuery,
+      query: '${nanoid(6)}/${newQuery}',
+      images: [],
+      page: 1,
+      totalImg: 0,
     });
   };
 
   handleSubmit = evt => {
     evt.preventDefault();
-    this.changeQuery(evt.target.elements.query.value);
+    const currentQuery = evt.target.elements.query.value.trim();
+    if (currentQuery)
+    this.changeQuery();
     evt.target.reset();
   };
 
