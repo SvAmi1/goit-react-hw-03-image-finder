@@ -30,12 +30,12 @@ const customStyles = {
   },
 };
 
-export const ModalBox = ({ bigPhoto, alt, forClose, state }) => {
+export const ModalBox = ({ bigImg, alt, onClose, state }) => {
   return (
-    <Modal isOpen={state} onRequestClose={forClose} style={customStyles}>
+    <Modal isOpen={state} onRequestClose={onClose} style={customStyles}>
       <>
-        <BigImage src={bigPhoto} alt={alt} />
-        <CloseModalBtn onClick={forClose}>
+        <BigImage src={bigImg} alt={alt} />
+        <CloseModalBtn onClick={onClose}>
           <MdClear />
         </CloseModalBtn>
       </>
