@@ -4,12 +4,11 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Loader } from './Loader/Loader';
 import { Button } from './Button/Button';
 
-
+import { nanoid } from 'nanoid';
 import { fetchImages } from 'services/api';
 import { ToastContainer } from 'react-toastify';
 import { success, error, warn, info, empty } from 'services/toasts';
-
-
+import { GlobalStyle, Layout, } from './GlobalStyle';
 
 export class App extends Component {
   state = {
@@ -59,24 +58,26 @@ export class App extends Component {
       }, 800);
     }
       }
-  onChangeQuery = newQuery => {
-    this.setState({
-      query: '${nanoid(6)}/${newQuery}',
-      images: [],
-      page: 1,
-      totalImg: 0,
-    });
-  };
-
+  
   handleSubmit = evt => {
     evt.preventDefault();
     const currentQuery = evt.target.elements.query.value.trim();
+    console.log(currentQuery);
     if (currentQuery === '') {
       warn();
       return;
     }
     this.onChangeQuery(currentQuery);
-    // evt.target.reset();
+  };
+
+  onChangeQuery = newQuery => {
+    this.setState({
+      query: `${nanoid(6)}/${newQuery}`,
+      // query: newQuery,
+      images: [],
+      page: 1,
+      totalImg: 0,
+    });
   };
 
   onChangePage = () => {
@@ -89,15 +90,15 @@ export class App extends Component {
 render () {
 const {images, totalImg, isLoading} = this.state;
   return (
-    <div>
+    <Layout>
       <SearchBar onSubmit={this.handleSubmit}/>
 
-      <ImageGallery images={images}>ImageGallery</ImageGallery>
+      <ImageGallery images={images}/>
       {isLoading && <Loader/>}
       {images.lenght === 0 || images.lenght === totalImg ? null : (<Button changePage={this.onChangePage}/>)}
-      <div>LoadMore</div>
       <ToastContainer/>
-    </div>
+      <GlobalStyle/>
+    </Layout>
   );
 }
 };

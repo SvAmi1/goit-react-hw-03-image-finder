@@ -1,18 +1,21 @@
-export const SearchBar = ({ onSubmit, }) => {
+import { MdYoutubeSearchedFor } from 'react-icons/md';
+import { Form, Input, Search, Thumb } from './Searchbar.styled';
+
+export const SearchBar = ({ onSubmit }) => {
     return (
-      <div>
-        <form>
-        <button onClick={onSubmit} type='submit'>
-            <span>Search</span>
-        </button>
-            <input 
+      <Thumb>
+        <Form onClick={onSubmit}>
+        <Search  type='submit'>
+            <MdYoutubeSearchedFor/>
+        </Search>
+            <Input 
             type="text" 
             name="query"  
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"/>
         
-        </form>
-      </div>
+        </Form>
+      </Thumb>
     );
   };
