@@ -61,8 +61,8 @@ export class App extends Component {
   
   handleSubmit = evt => {
     evt.preventDefault();
-    const currentQuery = evt.target.elements.query.value.trim();
-    console.log(currentQuery);
+    const currentQuery = evt.currentTarget.elements.query.value.trim();
+    // console.log(currentQuery);
     if (currentQuery === '') {
       warn();
       return;
