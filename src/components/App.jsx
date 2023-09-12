@@ -21,14 +21,12 @@ export class App extends Component {
 
   async  componentDidUpdate(prevProps, prevState) {
     const longQuery = this.state.query;
-    const shotQuery = longQuery.slice(7, longQuery.length);
+    const shotQuery = longQuery.slice(9, longQuery.length);
     const imgPage = this.state.page;
     
     if (prevState.query !== longQuery || prevState.page !== imgPage) {
-      // const newImages = await fetchImages(shotQuery, imgPage);
       this.setState({ isLoading: true });
-      // this.setState(prevState => ({...prevState.query, 
-      //   images: newImages}))
+     
       setTimeout(async () => {
         try {
           const { hits, totalHits } = await fetchImages(shotQuery, imgPage);
@@ -72,8 +70,7 @@ export class App extends Component {
 
   onChangeQuery = newQuery => {
     this.setState({
-      query: `${nanoid(6)}/${newQuery}`,
-      // query: newQuery,
+      query: `${nanoid(8)}/${newQuery}`,
       images: [],
       page: 1,
       totalImg: 0,

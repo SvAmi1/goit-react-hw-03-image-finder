@@ -20,4 +20,4 @@ export const empty = () =>
   toast.warn('Sorry, no photos with this query...', options);
 export const info = () => toast.info('Oops! No more photos :(', options);
 export const success = total =>
-  toast.success(`Cool!!! We found ${total} photos!`, options);
+  toast.success(`WOW!!! We found ${total} photos!`, options);
