@@ -2,14 +2,14 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const options = {
-  position: 'top-center',
+  position: 'top-left',
   autoClose: 3000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
-  theme: 'colored',
+  theme: 'light',
 };
 
 export const error = () =>
