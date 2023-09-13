@@ -20,11 +20,16 @@ export class App extends Component {
   };
 
   async  componentDidUpdate(prevProps, prevState) {
+    const prevQuery = prevState.query;
     const longQuery = this.state.query;
     const shotQuery = longQuery.slice(9, longQuery.length);
     const imgPage = this.state.page;
     
-    if (prevState.query !== longQuery || prevState.page !== imgPage) {
+    if (prevQuery !== longQuery) {
+      this.setState({ images: [] });
+    }
+
+    if (prevQuery !== longQuery || prevState.page !== imgPage) {
       this.setState({ isLoading: true });
      
       setTimeout(async () => {
@@ -59,13 +64,16 @@ export class App extends Component {
   
   handleSubmit = evt => {
     evt.preventDefault();
-    const currentQuery = evt.currentTarget.elements.query.value.trim();
+    // const currentQuery = this.state.query;
+    // const currentQuery = evt.currentTarget.elements.query.value.trim();
     // console.log(currentQuery);
-    if (currentQuery === '') {
+    const targetQuery = evt.target.elements.query.value.trim();
+    // console.log(targetQuery);
+    if (targetQuery === '') {
       warn();
       return;
     }
-    this.onChangeQuery(currentQuery);
+    this.onChangeQuery(targetQuery);
   };
 
   onChangeQuery = newQuery => {
@@ -92,7 +100,7 @@ const {images, totalImg, isLoading} = this.state;
 
       <ImageGallery images={images}/>
       {isLoading && <Loader/>}
-      {images.lenght === 0 || images.lenght === totalImg ? null : (<Button changePage={this.onChangePage}/>)}
+      {images.length === 0 || images.length === totalImg ? null : (<Button changePage={this.onChangePage}/>)}
       <ToastContainer/>
       <GlobalStyle/>
     </Layout>
